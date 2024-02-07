@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FD3551272B72F020004C820C /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = FD3551262B72F020004C820C /* RealityKitContent */; };
+		FD3551292B72F020004C820C /* Flode_VRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3551282B72F020004C820C /* Flode_VRApp.swift */; };
+		FD35512B2B72F020004C820C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35512A2B72F020004C820C /* ContentView.swift */; };
+		FD35512D2B72F020004C820C /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35512C2B72F020004C820C /* ImmersiveView.swift */; };
+		FD35512F2B72F020004C820C /* ImageBasedLighting.skybox in Resources */ = {isa = PBXBuildFile; fileRef = FD35512E2B72F020004C820C /* ImageBasedLighting.skybox */; };
+		FD3551312B72F021004C820C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3551302B72F021004C820C /* Assets.xcassets */; };
+		FD3551342B72F021004C820C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3551332B72F021004C820C /* Preview Assets.xcassets */; };
+		FD35513F2B72F021004C820C /* Flode_VRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35513E2B72F021004C820C /* Flode_VRTests.swift */; };
+		FD3551492B72F78F004C820C /* SkyBoxControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD35513B2B72F021004C820C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD3551192B72F020004C820C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD3551202B72F020004C820C;
+			remoteInfo = Flode_VR;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FD3551212B72F020004C820C /* Flode_VR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flode_VR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD3551252B72F020004C820C /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		FD3551282B72F020004C820C /* Flode_VRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flode_VRApp.swift; sourceTree = "<group>"; };
+		FD35512A2B72F020004C820C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FD35512C2B72F020004C820C /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
+		FD35512E2B72F020004C820C /* ImageBasedLighting.skybox */ = {isa = PBXFileReference; lastKnownFileType = file.skybox; path = ImageBasedLighting.skybox; sourceTree = "<group>"; };
+		FD3551302B72F021004C820C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD3551332B72F021004C820C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FD3551352B72F021004C820C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD35513A2B72F021004C820C /* Flode_VRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Flode_VRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD35513E2B72F021004C820C /* Flode_VRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flode_VRTests.swift; sourceTree = "<group>"; };
+		FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyBoxControlsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FD35511E2B72F020004C820C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD3551272B72F020004C820C /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD3551372B72F021004C820C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FD3551182B72F020004C820C = {
+			isa = PBXGroup;
+			children = (
+				FD3551232B72F020004C820C /* Flode_VR */,
+				FD3551242B72F020004C820C /* Packages */,
+				FD35513D2B72F021004C820C /* Flode_VRTests */,
+				FD3551222B72F020004C820C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FD3551222B72F020004C820C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD3551212B72F020004C820C /* Flode_VR.app */,
+				FD35513A2B72F021004C820C /* Flode_VRTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD3551232B72F020004C820C /* Flode_VR */ = {
+			isa = PBXGroup;
+			children = (
+				FD3551282B72F020004C820C /* Flode_VRApp.swift */,
+				FD35512A2B72F020004C820C /* ContentView.swift */,
+				FD35512C2B72F020004C820C /* ImmersiveView.swift */,
+				FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */,
+				FD35512E2B72F020004C820C /* ImageBasedLighting.skybox */,
+				FD3551302B72F021004C820C /* Assets.xcassets */,
+				FD3551352B72F021004C820C /* Info.plist */,
+				FD3551322B72F021004C820C /* Preview Content */,
+			);
+			path = Flode_VR;
+			sourceTree = "<group>";
+		};
+		FD3551242B72F020004C820C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				FD3551252B72F020004C820C /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		FD3551322B72F021004C820C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FD3551332B72F021004C820C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FD35513D2B72F021004C820C /* Flode_VRTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD35513E2B72F021004C820C /* Flode_VRTests.swift */,
+			);
+			path = Flode_VRTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FD3551202B72F020004C820C /* Flode_VR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD3551422B72F021004C820C /* Build configuration list for PBXNativeTarget "Flode_VR" */;
+			buildPhases = (
+				FD35511D2B72F020004C820C /* Sources */,
+				FD35511E2B72F020004C820C /* Frameworks */,
+				FD35511F2B72F020004C820C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Flode_VR;
+			packageProductDependencies = (
+				FD3551262B72F020004C820C /* RealityKitContent */,
+			);
+			productName = Flode_VR;
+			productReference = FD3551212B72F020004C820C /* Flode_VR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FD3551392B72F021004C820C /* Flode_VRTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD3551452B72F021004C820C /* Build configuration list for PBXNativeTarget "Flode_VRTests" */;
+			buildPhases = (
+				FD3551362B72F021004C820C /* Sources */,
+				FD3551372B72F021004C820C /* Frameworks */,
+				FD3551382B72F021004C820C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD35513C2B72F021004C820C /* PBXTargetDependency */,
+			);
+			name = Flode_VRTests;
+			productName = Flode_VRTests;
+			productReference = FD35513A2B72F021004C820C /* Flode_VRTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FD3551192B72F020004C820C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					FD3551202B72F020004C820C = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					FD3551392B72F021004C820C = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = FD3551202B72F020004C820C;
+					};
+				};
+			};
+			buildConfigurationList = FD35511C2B72F020004C820C /* Build configuration list for PBXProject "Flode_VR" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FD3551182B72F020004C820C;
+			productRefGroup = FD3551222B72F020004C820C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FD3551202B72F020004C820C /* Flode_VR */,
+				FD3551392B72F021004C820C /* Flode_VRTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD35511F2B72F020004C820C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD3551312B72F021004C820C /* Assets.xcassets in Resources */,
+				FD3551342B72F021004C820C /* Preview Assets.xcassets in Resources */,
+				FD35512F2B72F020004C820C /* ImageBasedLighting.skybox in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD3551382B72F021004C820C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FD35511D2B72F020004C820C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD35512B2B72F020004C820C /* ContentView.swift in Sources */,
+				FD3551292B72F020004C820C /* Flode_VRApp.swift in Sources */,
+				FD3551492B72F78F004C820C /* SkyBoxControlsView.swift in Sources */,
+				FD35512D2B72F020004C820C /* ImmersiveView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD3551362B72F021004C820C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD35513F2B72F021004C820C /* Flode_VRTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FD35513C2B72F021004C820C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD3551202B72F020004C820C /* Flode_VR */;
+			targetProxy = FD35513B2B72F021004C820C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FD3551402B72F021004C820C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		FD3551412B72F021004C820C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+		FD3551432B72F021004C820C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Flode_VR/Preview Content\"";
+				DEVELOPMENT_TEAM = 48JKZFC7HJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Flode.Flode-VR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		FD3551442B72F021004C820C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Flode_VR/Preview Content\"";
+				DEVELOPMENT_TEAM = 48JKZFC7HJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Flode.Flode-VR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+		FD3551462B72F021004C820C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 48JKZFC7HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Flode.Flode-VRTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flode_VR.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Flode_VR";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		FD3551472B72F021004C820C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 48JKZFC7HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Flode.Flode-VRTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flode_VR.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Flode_VR";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FD35511C2B72F020004C820C /* Build configuration list for PBXProject "Flode_VR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD3551402B72F021004C820C /* Debug */,
+				FD3551412B72F021004C820C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD3551422B72F021004C820C /* Build configuration list for PBXNativeTarget "Flode_VR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD3551432B72F021004C820C /* Debug */,
+				FD3551442B72F021004C820C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD3551452B72F021004C820C /* Build configuration list for PBXNativeTarget "Flode_VRTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD3551462B72F021004C820C /* Debug */,
+				FD3551472B72F021004C820C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD3551262B72F020004C820C /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FD3551192B72F020004C820C /* Project object */;
+}
