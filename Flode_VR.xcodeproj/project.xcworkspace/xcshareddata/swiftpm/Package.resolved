@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "replicate-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/replicate/replicate-swift",
+      "state" : {
+        "revision" : "286ba0babc7c9db35f83d53832299c12a805580e",
+        "version" : "0.20.0"
+      }
+    }
+  ],
+  "version" : 2
+}
