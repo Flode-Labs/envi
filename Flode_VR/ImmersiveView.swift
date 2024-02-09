@@ -1,6 +1,7 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
+import AVFoundation
 
 struct ImmersiveView: View {
     
@@ -19,13 +20,18 @@ struct ImmersiveView: View {
         } update: { content in
             // Print the latest skyBoxSettings
             //print("Latest SkyBoxSettings is: \(skyBoxSettings.currentSkybox)")
-            
-            // Update current skybox
-            //Check if the current skybox is a URL or a prebuilt skybox
-            if skyBoxSettings.currentSkybox.contains("http") {
-                updateSkyboxURL(with: skyBoxSettings.currentSkybox, content: content)
-            } else {
-                updateSkybox(with: skyBoxSettings.currentSkybox, content: content)
+            if !skyBoxSettings.loading{
+                // Update current skybox
+                //Check if the current skybox is a URL or a prebuilt skybox
+                if skyBoxSettings.currentSkybox.contains("http") {
+                    updateSkyboxURL(with: skyBoxSettings.currentSkybox, content: content)
+                } else {
+                    updateSkybox(with: skyBoxSettings.currentSkybox, content: content)
+                }
+            }else{
+                // Mostrar el video
+                updateVideoSkybox(content: content)
+                
             }
         }
         .onAppear(perform: {
@@ -90,6 +96,25 @@ struct ImmersiveView: View {
         
     }
     
+    // Updates the current skybox
+    private func updateVideoSkybox (content:RealityViewContent){
+        let skyBoxEntity = content.entities.first{ entity in
+                    entity.name == "SkyBox"
+                }
+                
+                // Update its material (to latest skybox)
+        guard let videoMaterial = createVideoMaterial() else {
+            return
+        }
+            
+                skyBoxEntity?.components.set(
+                    ModelComponent(
+                    mesh: MeshResource.generateSphere(radius: 1000),
+                            materials: [videoMaterial]
+                        )
+                    )
+    }
+    
     private func updateSkyboxURL (with newSkyBoxName:String, content:RealityViewContent){
         // Get skybox entity from content
         // Loop trought the entities and retrieve the one that has SkyBox name
@@ -120,6 +145,19 @@ struct ImmersiveView: View {
         )
         
     }
+}
+
+private func createVideoMaterial()-> VideoMaterial? {
+    // Load the video
+    guard let videoURL = Bundle.main.url(forResource: "video", withExtension: "mp4") else {
+        return nil
+    }
+    let avPlayer = AVPlayer(url: videoURL)
+    // Create the video material
+    let videoMaterial = VideoMaterial(avPlayer: avPlayer)
+    avPlayer.play()
+    
+    return videoMaterial
 }
 
 #Preview {

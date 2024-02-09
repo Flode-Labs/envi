@@ -16,7 +16,7 @@ struct SkyBoxControlsView: View {
     @State private var isToolbarVisible: Bool = true
     
     private var replicate: Replicate.Client {
-        Replicate.Client(token: apiKey.isEmpty ? "r8_GVuXowHuQtSWGakDhEbndGp44hhUmmb398Uye" : apiKey)
+        Replicate.Client(token: apiKey.isEmpty ? "API" : apiKey)
     }
     
     let columns = [
@@ -31,15 +31,18 @@ struct SkyBoxControlsView: View {
         "tree.fill": ("Forest", "Misty forest at dawn"),
         "building.2.fill": ("City", "Futuristic cityscape at night"),
         "mountain.2.fill": ("Mountains", "Snowy mountains under clear blue sky"),
-        "hurricane": ("Anime", "Tokio city street anime style")
+        "hurricane": ("Anime", "Tokio city street anime style"),
+        "sparkle": ("Galaxy", "Galaxy"),
+        "book.fill": ("Fantasy", "Fantasy forest of elf"),
+        "tornado.circle.fill": ("Desert", "Desert"),
     ]
     
     var body: some View {
         VStack {
-            Text("Flode Labs").font(.largeTitle)
+            Text("Generate a new environment using AI").font(.largeTitle)
 
             HStack {
-                TextField("API Key", text: $inputApiKey)
+                SecureField("API Key", text: $inputApiKey)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button("Save") {
@@ -109,9 +112,11 @@ struct SkyBoxControlsView: View {
     func openURL(_ url: URL) {
         UIApplication.shared.open(url)
     }
+
     
     // Llama a la API y devuelve la URL de la imagen generada
     func callApiAndUpdateSkybox(with input: String) async throws{
+        self.skyBoxSettings.loading = true
         let model = try await replicate.getModel("lucataco/sdxl-panoramic")
         if let latestVersion = model.latestVersion {
             let prediction = try await replicate.createPrediction(version: latestVersion.id,
@@ -120,6 +125,7 @@ struct SkyBoxControlsView: View {
             // Set the skybox
             if let urlString = prediction.output {
                 self.skyBoxSettings.currentSkybox = urlString.stringValue ?? ""
+                self.skyBoxSettings.loading = false
             }
             
         }
