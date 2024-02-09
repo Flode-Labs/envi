@@ -41,5 +41,5 @@ struct Flode_VRApp: App {
 
 class SkyboxSettings: ObservableObject {
     // Kind of a global var that contains the current skybox to show and communicate between windows.
-    @Published var currentSkybox = "mars"
+    @Published var currentSkybox = "colon"
 }

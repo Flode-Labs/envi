@@ -18,20 +18,61 @@ struct AssetSelectorView: View {
             HStack {
                 SkyBoxButton(onClick: {
                     // Change skybox
-                    skyBoxSettings.currentSkybox = "anime"
-                }, iconName: "tree", title: "Anime")
+                    skyBoxSettings.currentSkybox = "airplane"
+                }, iconName: "tree", title: "Airplane")
                 
                 SkyBoxButton(onClick: {
-                    skyBoxSettings.currentSkybox = "beach"
-                }, iconName: "moon", title: "Anime")
+                    skyBoxSettings.currentSkybox = "anfield"
+                }, iconName: "moon", title: "Anfield")
                 
                 SkyBoxButton(onClick: {
-                    skyBoxSettings.currentSkybox = "mars"
-                }, iconName: "sunset", title: "Anime")
+                    skyBoxSettings.currentSkybox = "buckingham"
+                }, iconName: "sunset", title: "Buckingham Palace")
                 
                 SkyBoxButton(onClick: {
-                    skyBoxSettings.currentSkybox = "mars"
-                }, iconName: "sunset", title: "Anime")
+                    skyBoxSettings.currentSkybox = "colon"
+                }, iconName: "sunset", title: "Colon Theatre")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "eiffel"
+                }, iconName: "sunset", title: "Eiffel Tower")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "esteros"
+                }, iconName: "sunset", title: "Esteros del Iberá")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "fitz"
+                }, iconName: "sunset", title: "Mount Fitz Roy")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "iceland"
+                }, iconName: "sunset", title: "Iceland")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "jefferson"
+                }, iconName: "sunset", title: "Jefferson House")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "penguins"
+                }, iconName: "sunset", title: "Penguins")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "perito"
+                }, iconName: "sunset", title: "Perito Moreno glacier")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "salinas"
+                }, iconName: "sunset", title: "Salinas Grandes")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "sunflower"
+                }, iconName: "sunset", title: "Sunflowers")
+                
+                SkyBoxButton(onClick: {
+                    skyBoxSettings.currentSkybox = "underwater"
+                }, iconName: "sunset", title: "Underwater")
+                
             }
             .padding(.top, 20)
         }

@@ -16,7 +16,7 @@ struct SkyBoxControlsView: View {
     @State private var isToolbarVisible: Bool = true
     
     private var replicate: Replicate.Client {
-        Replicate.Client(token: apiKey.isEmpty ? "API" : apiKey)
+        Replicate.Client(token: apiKey.isEmpty ? "r8_GVuXowHuQtSWGakDhEbndGp44hhUmmb398Uye" : apiKey)
     }
     
     let columns = [
