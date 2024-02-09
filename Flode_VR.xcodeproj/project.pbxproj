@@ -17,6 +17,7 @@
 		FD35513F2B72F021004C820C /* Flode_VRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35513E2B72F021004C820C /* Flode_VRTests.swift */; };
 		FD3551492B72F78F004C820C /* SkyBoxControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */; };
 		FD54E3A12B755BEC00B19777 /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = FD54E3A02B755BEC00B19777 /* Replicate */; };
+		FDEAA67E2B75C12200F1A02A /* AssetSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAA67D2B75C12200F1A02A /* AssetSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		FD35513E2B72F021004C820C /* Flode_VRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flode_VRTests.swift; sourceTree = "<group>"; };
 		FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyBoxControlsView.swift; sourceTree = "<group>"; };
 		FD54E3A22B755D8C00B19777 /* Flode_VR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flode_VR.entitlements; sourceTree = "<group>"; };
+		FDEAA67D2B75C12200F1A02A /* AssetSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				FD35512A2B72F020004C820C /* ContentView.swift */,
 				FD35512C2B72F020004C820C /* ImmersiveView.swift */,
 				FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */,
+				FDEAA67D2B75C12200F1A02A /* AssetSelectorView.swift */,
 				FD35512E2B72F020004C820C /* ImageBasedLighting.skybox */,
 				FD3551302B72F021004C820C /* Assets.xcassets */,
 				FD3551352B72F021004C820C /* Info.plist */,
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDEAA67E2B75C12200F1A02A /* AssetSelectorView.swift in Sources */,
 				FD35512B2B72F020004C820C /* ContentView.swift in Sources */,
 				FD3551292B72F020004C820C /* Flode_VRApp.swift in Sources */,
 				FD3551492B72F78F004C820C /* SkyBoxControlsView.swift in Sources */,

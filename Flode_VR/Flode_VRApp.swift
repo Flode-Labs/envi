@@ -16,20 +16,30 @@ struct Flode_VRApp: App {
         // VR
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView()
-                // Pass the env object to the view
+            // Pass the env object to the view
                 .environmentObject(skyBoxSettings)
         }.immersionStyle(selection: .constant(.full), in: .full)
         
         // Window
         WindowGroup(id: "SkyBoxControls"){
-            SkyBoxControlsView()
-                .environmentObject(skyBoxSettings)
+            TabView {
+                 AssetSelectorView()
+                     .environmentObject(skyBoxSettings)
+                     .tabItem {
+                         Label("Spaces", systemImage: "table.fill")
+                     }
+                SkyBoxControlsView()
+                    .environmentObject(skyBoxSettings)
+                    .tabItem {
+                        Label("Generative AI", systemImage: "wand.and.stars.inverse")
+                    }
+            }
         }
-        .defaultSize(width: 30, height: 30)
+        .defaultSize(width: 1000, height: 500)
     }
 }
 
 class SkyboxSettings: ObservableObject {
     // Kind of a global var that contains the current skybox to show and communicate between windows.
-    @Published var currentSkybox = ""
+    @Published var currentSkybox = "mars"
 }

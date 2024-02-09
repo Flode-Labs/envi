@@ -44,16 +44,16 @@ struct ImmersiveView: View {
         let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let data = try! Data(contentsOf: remoteURL)
         try! data.write(to: fileURL)
-
+        
         // TODO: Ver como se va a poder cargar la textura a partir de una request de API
         guard let skyBoxTexture = try? TextureResource.load(contentsOf: fileURL) else {return nil}
         skyBoxMaterial.color = .init(texture: .init(skyBoxTexture))
         // Entity
         let skyBoxEntity = Entity()
         skyBoxEntity.components.set(ModelComponent(
-                mesh: skyBoxMesh,
-                materials: [skyBoxMaterial]
-            )
+            mesh: skyBoxMesh,
+            materials: [skyBoxMaterial]
+        )
         )
         // Associate a name with the skybox
         skyBoxEntity.name = "SkyBox"
@@ -70,9 +70,9 @@ struct ImmersiveView: View {
         let skyBoxEntity = content.entities.first{ entity in
             entity.name == "SkyBox"
         }
-
-
-
+        
+        
+        
         // Update its material (to latest skybox)
         guard let updatedSkyBoxTexture = try? TextureResource.load(named: newSkyBoxName) else {
             return
@@ -83,13 +83,13 @@ struct ImmersiveView: View {
         
         skyBoxEntity?.components.set(
             ModelComponent(
-            mesh: MeshResource.generateSphere(radius: 1000),
-                    materials: [updatedskyBoxMaterial]
-                )
+                mesh: MeshResource.generateSphere(radius: 1000),
+                materials: [updatedskyBoxMaterial]
             )
+        )
         
     }
-
+    
     private func updateSkyboxURL (with newSkyBoxName:String, content:RealityViewContent){
         // Get skybox entity from content
         // Loop trought the entities and retrieve the one that has SkyBox name
@@ -101,8 +101,8 @@ struct ImmersiveView: View {
         let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         let data = try! Data(contentsOf: remoteURL)
         try! data.write(to: fileURL)
-
-
+        
+        
         // Update its material (to latest skybox)
         guard let updatedSkyBoxTexture = try? TextureResource.load(contentsOf: fileURL)
         else {
@@ -114,10 +114,10 @@ struct ImmersiveView: View {
         
         skyBoxEntity?.components.set(
             ModelComponent(
-            mesh: MeshResource.generateSphere(radius: 1000),
-                    materials: [updatedskyBoxMaterial]
-                )
+                mesh: MeshResource.generateSphere(radius: 1000),
+                materials: [updatedskyBoxMaterial]
             )
+        )
         
     }
 }

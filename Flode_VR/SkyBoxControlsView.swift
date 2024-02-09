@@ -6,113 +6,126 @@
 //
 import SwiftUI
 import Replicate
+import Foundation
 
 struct SkyBoxControlsView: View {
     @EnvironmentObject var skyBoxSettings: SkyboxSettings
-    @State private var inputUrl: String = ""
-
+    @AppStorage("APIKey") private var apiKey: String = ""
+    @State private var inputApiKey: String = ""
+    @State private var prompt: String = ""
+    @State private var isToolbarVisible: Bool = true
+    
+    private var replicate: Replicate.Client {
+        Replicate.Client(token: apiKey.isEmpty ? "API" : apiKey)
+    }
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 150))
+    ]
+    
+    // Adjusting structure for short titles and detailed prompts
+    let templatePrompts: [String: (title: String, detailedPrompt: String)] = [
+        "sunrise.fill": ("Sunrise", "Sunrise over mountains"),
+        "sunset.fill": ("Sunset", "Beautiful sunset by the beach"),
+        "sparkles": ("Stars", "Starry night sky"),
+        "tree.fill": ("Forest", "Misty forest at dawn"),
+        "building.2.fill": ("City", "Futuristic cityscape at night"),
+        "mountain.2.fill": ("Mountains", "Snowy mountains under clear blue sky"),
+        "hurricane": ("Anime", "Tokio city street anime style")
+    ]
+    
     var body: some View {
         VStack {
+            Text("Flode Labs").font(.largeTitle)
+
             HStack {
-                SkyBoxButton(onClick: {
-                    skyBoxSettings.currentSkybox = "anime"
-                }, iconName: "tree")
-                
-                SkyBoxButton(onClick: {
-                    skyBoxSettings.currentSkybox = "beach"
-                }, iconName: "moon")
-                
-                SkyBoxButton(onClick: {
-                    skyBoxSettings.currentSkybox = "stadium"
-                }, iconName: "sunset")
-            }
-            // New UI elements for URL input and send button
-            HStack {
-                TextField("Enter SkyBox URL", text: $inputUrl)
+                TextField("API Key", text: $inputApiKey)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                
+                Button("Save") {
+                    apiKey = inputApiKey
+                }
+                .padding()
                 
                 Button(action: {
-                    // Call API and update SkyBoxSettings with the response
-                    callApiAndUpdateSkybox(with: inputUrl)
+                    // Open the URL
+                    openURL(URL(string: "https://replicate.com/account/api-tokens")!)
                 }) {
-                    Image(systemName: "wand.and.stars.inverse") // Adjust the icon to match your UI
-                        .padding()
+                    Image(systemName: "arrow.up.right.square")
+                    
+                }
+            }
+            .padding(.bottom, 20)
+            Text("Examples").font(.largeTitle)
+            
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(Array(templatePrompts.keys), id: \.self) { key in
+                    let item = templatePrompts[key]!
+                    Button(action: {
+                        self.prompt = item.detailedPrompt // Copying the detailed prompt
+                    }) {
+                        VStack {
+                            Image(systemName: key)
+                                .font(.largeTitle)
+                            Text(item.title) // Using short title
+                                .font(.caption)
+                        }
+                    }
                 }
             }
         }
+        .padding(.horizontal, 50)
+        .toolbar {
+            if isToolbarVisible {
+                ToolbarItem(placement: .bottomOrnament) {
+                    HStack {
+                        TextField("Enter the prompt for the environment", text: $prompt)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Button(action: {
+                            Task {
+                                try await callApiAndUpdateSkybox(with: prompt)
+                            }
+                        }) {
+                            Image(systemName: "paperplane.fill")
+                                .foregroundColor(.white)
+                                .padding(8)
+                                .background(Color.blue)
+                                .clipShape(Circle())
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+        }
+        .onAppear {
+            isToolbarVisible = true
+        }
+        .onDisappear {
+            isToolbarVisible = false
+        }
     }
     
-    struct PredictionInput: Codable {
-        var version: String
-        var input: Prompt
-    }
-
-    struct Prompt: Codable {
-        var prompt: String
+    func openURL(_ url: URL) {
+        UIApplication.shared.open(url)
     }
     
     // Llama a la API y devuelve la URL de la imagen generada
-    func callApiAndUpdateSkybox(with url: String) {
-        self.skyBoxSettings.currentSkybox = "https://replicate.delivery/pbxt/OtqGeEiTTfk7CU7jj6ogbwRmVs7dxKbaFtax5FmyqNtjKXUSA/6-final.png"
-        
-        
-        guard let url = URL(string: "https://api.replicate.com/v1/predictions") else { return }
-        
-        let predictionInput = PredictionInput(version: "76acc4075d0633dcb3823c1fed0419de21d42001b65c816c7b5b9beff30ec8cd", input: Prompt(prompt: "hdri view, aurora night in a mountain"))
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("Token $REPLICATE_API_TOKEN", forHTTPHeaderField: "Authorization") // Reemplaza $REPLICATE_API_TOKEN con tu token real
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            let jsonData = try JSONEncoder().encode(predictionInput)
-            request.httpBody = jsonData
-        } catch {
-            print("Error encoding input: \(error)")
-            return
+    func callApiAndUpdateSkybox(with input: String) async throws{
+        let model = try await replicate.getModel("lucataco/sdxl-panoramic")
+        if let latestVersion = model.latestVersion {
+            let prediction = try await replicate.createPrediction(version: latestVersion.id,
+                                                                  input: ["prompt": "HDRI View, \(input)"],
+                                                                  wait: true)
+            // Set the skybox
+            if let urlString = prediction.output {
+                self.skyBoxSettings.currentSkybox = urlString.stringValue ?? ""
+            }
+            
         }
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Request error: \(error)")
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                print(response as? HTTPURLResponse as Any)
-                print("Invalid response or status code")
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received")
-                return
-            }
-            
-            // Intenta imprimir la respuesta como un String
-            if let responseString = String(data: data, encoding: .utf8) {
-                print("Response: \(responseString)")
-            } else {
-                print("Error converting data to String")
-            }
-        }.resume()
     }
     
 }
-
-struct SkyBoxButton: View {
-    var onClick: () -> Void
-    var iconName: String
-    
-    var body: some View {
-        Button(action: onClick, label: {
-            Image(systemName: iconName)
-        })
-    }
-}
-
 
 // Example Preview Provider
 struct SkyBoxControlsView_Previews: PreviewProvider {
