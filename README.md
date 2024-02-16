@@ -19,7 +19,7 @@ https://github.com/Flode-Labs/envi/assets/71894332/e7f94745-4330-43f1-9abd-dfc90
    Open your terminal and execute the following command to clone the Envi repository:
 
    ```bash
-   git clone https://github.com/yourusername/envi.git
+   git clone https://github.com/Flode-Labs/envi.git
    ```
 
 2. **Open the Project in Xcode**
