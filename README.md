@@ -1,4 +1,4 @@
-# Envi for Vision Pro 🌍
+# Envi for Vision Pro 🥽 🌎
 
 Envi is an innovative open-source application designed for Vision Pro users, leveraging the power of artificial intelligence to generate immersive environments. By utilizing the Replicate API, Envi enables users to bring their digital worlds to life with unparalleled ease and flexibility.
 
