@@ -29,7 +29,6 @@ struct ImmersiveView: View {
                     updateSkybox(with: skyBoxSettings.currentSkybox, content: content)
                 }
             }else{
-                // Mostrar el video
                 updateVideoSkybox(content: content)
                 
             }
@@ -51,7 +50,6 @@ struct ImmersiveView: View {
         let data = try! Data(contentsOf: remoteURL)
         try! data.write(to: fileURL)
         
-        // TODO: Ver como se va a poder cargar la textura a partir de una request de API
         guard let skyBoxTexture = try? TextureResource.load(contentsOf: fileURL) else {return nil}
         skyBoxMaterial.color = .init(texture: .init(skyBoxTexture))
         // Entity

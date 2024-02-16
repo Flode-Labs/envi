@@ -73,7 +73,6 @@ struct AutoScroller: View {
                                     skyBoxSettings.currentSkybox = imageNames[index]
                                 }
                         }
-                        //.background(VisualEffectBlur())
                         .shadow(radius: 20)
                     }
                 }

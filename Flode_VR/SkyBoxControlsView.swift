@@ -114,7 +114,7 @@ struct SkyBoxControlsView: View {
     }
 
     
-    // Llama a la API y devuelve la URL de la imagen generada
+    // Calls the API and returns the generated image
     func callApiAndUpdateSkybox(with input: String) async throws{
         self.skyBoxSettings.loading = true
         let model = try await replicate.getModel("lucataco/sdxl-panoramic")
