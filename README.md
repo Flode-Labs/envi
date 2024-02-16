@@ -2,6 +2,10 @@
 
 Envi is an innovative open-source application designed for Vision Pro users, leveraging the power of artificial intelligence to generate immersive environments. By utilizing the Replicate API, Envi enables users to bring their digital worlds to life with unparalleled ease and flexibility.
 
+
+https://github.com/Flode-Labs/envi/assets/71894332/e7f94745-4330-43f1-9abd-dfc906ae583d
+
+
 ## Features 🚀
 
 - **AI-Powered Environment Generation**: Create stunning, realistic environments with the assistance of advanced AI algorithms.
