@@ -7,6 +7,7 @@
 import SwiftUI
 import Replicate
 import Foundation
+import AVFoundation
 
 struct SkyBoxControlsView: View {
     @EnvironmentObject var skyBoxSettings: SkyboxSettings
@@ -17,10 +18,28 @@ struct SkyBoxControlsView: View {
     @State private var isApiKeySavedAlertVisible: Bool = false // For API key saved notification
     @State private var isSubmitting: Bool = false // To manage the submission state
 
+    // Audio players
+    private var promptMissingPlayer: AVAudioPlayer?
+    private var apiKeyMissingPlayer: AVAudioPlayer?
+    private var welcomePlayer: AVAudioPlayer?
+
+    // Replicate client
     private var replicate: Replicate.Client {
         Replicate.Client(token: apiKey.isEmpty ? "API" : apiKey)
     }
     
+    init() {
+        // Initialize the audio players
+        promptMissingPlayer = loadAudioPlayer(fileName: "promptMissing")
+        apiKeyMissingPlayer = loadAudioPlayer(fileName: "apikeyMissing")
+        welcomePlayer = loadAudioPlayer(fileName: "welcome")
+
+        // Play the welcome audio if the API key is missing when the view appears
+        if apiKey.isEmpty {
+            playAudio(audioPlayer: welcomePlayer)
+        }
+    }
+
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -66,6 +85,7 @@ struct SkyBoxControlsView: View {
                 }
             }
             .padding(.bottom, 20)
+            .padding(.horizontal, 50)
             .disabled(isSubmitting) // Disable input while submitting
 
             Text("Examples").font(.largeTitle)
@@ -95,6 +115,14 @@ struct SkyBoxControlsView: View {
                                 .disabled(isSubmitting) // Disable input while submitting
 
                             Button(action: {
+                                if prompt.isEmpty {
+                                    playAudio(audioPlayer: promptMissingPlayer)
+                                    return
+                                } else if apiKey.isEmpty {
+                                    playAudio(audioPlayer: apiKeyMissingPlayer)
+                                    return
+                                }
+
                                 Task {
                                     try await callApiAndUpdateSkybox(with: prompt)
                                 }
@@ -124,7 +152,17 @@ struct SkyBoxControlsView: View {
         UIApplication.shared.open(url)
     }
 
-    
+    func loadAudioPlayer(fileName: String) -> AVAudioPlayer? {
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return nil }
+        return try? AVAudioPlayer(contentsOf: url)
+    }
+
+    func playAudio(audioPlayer: AVAudioPlayer?) {
+        audioPlayer?.stop() // Stop any currently playing audio
+        audioPlayer?.currentTime = 0 // Reset audio to start
+        audioPlayer?.play() // Play the audio
+    }
+
     // Calls the API and returns the generated image
     func callApiAndUpdateSkybox(with input: String) async {
         self.isSubmitting = true
