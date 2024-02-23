@@ -22,7 +22,8 @@ struct SkyBoxControlsView: View {
     private var promptMissingPlayer: AVAudioPlayer?
     private var apiKeyMissingPlayer: AVAudioPlayer?
     private var welcomePlayer: AVAudioPlayer?
-
+    private var generatingPlayer: AVAudioPlayer?
+    private var generationFailedPlayer: AVAudioPlayer?
     // Replicate client
     private var replicate: Replicate.Client {
         Replicate.Client(token: apiKey.isEmpty ? "API" : apiKey)
@@ -33,7 +34,8 @@ struct SkyBoxControlsView: View {
         promptMissingPlayer = loadAudioPlayer(fileName: "promptMissing")
         apiKeyMissingPlayer = loadAudioPlayer(fileName: "apikeyMissing")
         welcomePlayer = loadAudioPlayer(fileName: "welcome")
-
+        generatingPlayer = loadAudioPlayer(fileName: "enviromentCreating")
+        generationFailedPlayer = loadAudioPlayer(fileName: "enviromentFailed")
         // Play the welcome audio if the API key is missing when the view appears
         if apiKey.isEmpty {
             playAudio(audioPlayer: welcomePlayer)
@@ -158,13 +160,21 @@ struct SkyBoxControlsView: View {
     }
 
     func playAudio(audioPlayer: AVAudioPlayer?) {
-        audioPlayer?.stop() // Stop any currently playing audio
-        audioPlayer?.currentTime = 0 // Reset audio to start
-        audioPlayer?.play() // Play the audio
+        // Detiene todos los otros audios primero para prevenir solapamientos
+        [promptMissingPlayer, apiKeyMissingPlayer, welcomePlayer, generatingPlayer, generationFailedPlayer].forEach { player in
+            if player !== audioPlayer { // Verifica que no sea el mismo reproductor que vamos a reproducir
+                player?.stop()
+            }
+        }
+        
+        audioPlayer?.stop() // Detiene cualquier audio que esté reproduciendo actualmente
+        audioPlayer?.currentTime = 0 // Reinicia el audio desde el inicio
+        audioPlayer?.play() // Reproduce el nuevo audio
     }
-
     // Calls the API and returns the generated image
     func callApiAndUpdateSkybox(with input: String) async {
+        playAudio(audioPlayer: generatingPlayer) // Reproduce el sonido de inicio de generación
+
         self.isSubmitting = true
         defer { self.isSubmitting = false }
 
@@ -181,6 +191,8 @@ struct SkyBoxControlsView: View {
             }
         } catch {
             print("Error during prediction: \(error)")
+            playAudio(audioPlayer: generationFailedPlayer) // Reproduce el sonido de fallo si la generación falla
+
         }
         self.skyBoxSettings.loading = false
     }
