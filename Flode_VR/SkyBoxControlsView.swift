@@ -133,7 +133,7 @@ struct SkyBoxControlsView: View {
                                     .background(isSubmitting || prompt.isEmpty || apiKey.isEmpty ? Color.gray : Color.blue)
                                     .clipShape(Circle())
                             }
-                            .disabled(isSubmitting || prompt.isEmpty || apiKey.isEmpty) // Disable submit button conditionally
+                            // .disabled(isSubmitting || prompt.isEmpty || apiKey.isEmpty) // Disable submit button conditionally
                         }
                         .frame(maxWidth: .infinity)
                     }
