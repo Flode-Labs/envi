@@ -36,6 +36,15 @@ struct Flode_VRApp: App {
             }
         }
         .defaultSize(width: 1000, height: 500)
+        .overlay(
+        Group {
+            if skyBoxSettings.loading { // A transparent overlay that captures taps, preventing tab changes
+                Color.clear 
+                    .contentShape(Rectangle()) 
+                    .allowsHitTesting(true)
+            }
+        }
+    )
     }
 }
 

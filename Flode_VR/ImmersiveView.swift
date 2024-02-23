@@ -64,6 +64,9 @@ struct ImmersiveView: View {
         
         // Map image to inner surface or sphere
         skyBoxEntity.scale = .init(x:-1, y:1, z:1)
+
+        //The sky box is rotated 90 degrees to the right and I want to fix it
+        skyBoxEntity.orientation = simd_quatf(angle: .pi/2, axis: [0, 1, 0])
         
         return skyBoxEntity
     }
