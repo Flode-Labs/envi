@@ -85,8 +85,7 @@ struct SkyBoxControlsView: View {
                     .disabled(isSubmitting) // Disable example buttons while submitting
                 }
             }
-
-            // Toolbar remains unchanged
+            .padding(.horizontal, 50)
             .toolbar {
                 if isToolbarVisible {
                     ToolbarItem(placement: .bottomOrnament) {
@@ -97,7 +96,7 @@ struct SkyBoxControlsView: View {
 
                             Button(action: {
                                 Task {
-                                    await callApiAndUpdateSkybox(with: prompt)
+                                    try await callApiAndUpdateSkybox(with: prompt)
                                 }
                             }) {
                                 Image(systemName: "paperplane.fill")
