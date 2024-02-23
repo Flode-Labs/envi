@@ -13,38 +13,32 @@ struct Flode_VRApp: App {
     @ObservedObject var skyBoxSettings = SkyboxSettings()
     
     var body: some Scene {
-        // VR
-        ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
-            // Pass the env object to the view
-                .environmentObject(skyBoxSettings)
-        }.immersionStyle(selection: .constant(.full), in: .full)
-        
-        // Window
-        WindowGroup(id: "SkyBoxControls"){
-            TabView {
-                 AssetSelectorView()
-                     .environmentObject(skyBoxSettings)
-                     .tabItem {
-                         Label("Spaces", systemImage: "table.fill")
-                     }
-                SkyBoxControlsView()
-                    .environmentObject(skyBoxSettings)
-                    .tabItem {
-                        Label("Generative AI", systemImage: "wand.and.stars.inverse")
-                    }
+        WindowGroup(id: "SkyBoxControls") {
+            ZStack { // Wrap TabView in a ZStack for overlaying
+                TabView {
+                    AssetSelectorView()
+                        .environmentObject(skyBoxSettings)
+                        .tabItem {
+                            Label("Spaces", systemImage: "table.fill")
+                        }
+                    SkyBoxControlsView() // Adjustments as per previous suggestions
+                        .environmentObject(skyBoxSettings)
+                        .tabItem {
+                            Label("Generative AI", systemImage: "wand.and.stars.inverse")
+                        }
+                }
+                .disabled(skyBoxSettings.loading) // Optionally disable the TabView interaction
+
+                if skyBoxSettings.loading {
+                    Color.black.opacity(0.5) // Semi-transparent overlay
+                        .edgesIgnoringSafeArea(.all) // Ensure it covers the whole screen
+                        .contentShape(Rectangle()) // This captures taps across the whole overlay
+                        .allowsHitTesting(true) // Blocks user interaction with underlying views
+                        .animation(.easeInOut, value: skyBoxSettings.loading) // Smooth transition
+                }
             }
         }
         .defaultSize(width: 1000, height: 500)
-        .overlay(
-        Group {
-            if skyBoxSettings.loading { // A transparent overlay that captures taps, preventing tab changes
-                Color.clear 
-                    .contentShape(Rectangle()) 
-                    .allowsHitTesting(true)
-            }
-        }
-    )
     }
 }
 
