@@ -37,9 +37,7 @@ struct SkyBoxControlsView: View {
         generatingPlayer = loadAudioPlayer(fileName: "enviromentCreating")
         generationFailedPlayer = loadAudioPlayer(fileName: "enviromentFailed")
         // Play the welcome audio if the API key is missing when the view appears
-        if apiKey.isEmpty {
-            playAudio(audioPlayer: welcomePlayer)
-        }
+
     }
 
     let columns = [
@@ -148,6 +146,11 @@ struct SkyBoxControlsView: View {
                 isToolbarVisible = false
             }
         }
+        .onAppear{
+            if apiKey.isEmpty {
+                playAudio(audioPlayer: welcomePlayer)
+            }
+        }
     }
     
     func openURL(_ url: URL) {
@@ -166,7 +169,7 @@ struct SkyBoxControlsView: View {
                 player?.stop()
             }
         }
-        
+        print("Playing audio" + (audioPlayer?.url?.absoluteString ?? ""))
         audioPlayer?.stop() // Detiene cualquier audio que esté reproduciendo actualmente
         audioPlayer?.currentTime = 0 // Reinicia el audio desde el inicio
         audioPlayer?.play() // Reproduce el nuevo audio
