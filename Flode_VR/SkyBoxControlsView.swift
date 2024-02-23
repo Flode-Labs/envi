@@ -124,13 +124,15 @@ struct SkyBoxControlsView: View {
                                 }
 
                                 Task {
-                                    try await callApiAndUpdateSkybox(with: prompt)
+                                    await callApiAndUpdateSkybox(with: prompt)
                                 }
                             }) {
                                 Image(systemName: "paperplane.fill")
                                     .foregroundColor(.white)
                                     .padding(8)
-                                    .background(isSubmitting || prompt.isEmpty || apiKey.isEmpty ? Color.gray : Color.blue)
+                                    // .background(isSubmitting || prompt.isEmpty || apiKey.isEmpty ? Color.gray : Color.blue)
+                                    .background(Color.blue)
+
                                     .clipShape(Circle())
                             }
                             // .disabled(isSubmitting || prompt.isEmpty || apiKey.isEmpty) // Disable submit button conditionally
