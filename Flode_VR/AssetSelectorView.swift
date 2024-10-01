@@ -1,9 +1,3 @@
-//
-//  SkyBoxControlsView.swift
-//  Flode_VR
-//
-//  Created by Tadeo Donegana Braunschweig on 06/02/2024.
-//
 
 import SwiftUI
 

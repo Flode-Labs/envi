@@ -1,3 +1,5 @@
+
+
 import SwiftUI
 import RealityKit
 import RealityKitContent
@@ -6,162 +8,135 @@ import AVFoundation
 struct ImmersiveView: View {
     
     @Environment(\.openWindow) var openWindow
-    // To have access to the object passed to the view
-    @EnvironmentObject var skyBoxSettings:SkyboxSettings
+    @EnvironmentObject var skyBoxSettings: SkyboxSettings
     
     var body: some View {
-        RealityView{ content in
-            // Create a skybox
+        RealityView { content in
             guard let skyBoxEntity = createSkybox() else {
                 return
             }
-            // Add to content
             content.add(skyBoxEntity)
         } update: { content in
-            // Print the latest skyBoxSettings
-            //print("Latest SkyBoxSettings is: \(skyBoxSettings.currentSkybox)")
-            if !skyBoxSettings.loading{
-                // Update current skybox
-                //Check if the current skybox is a URL or a prebuilt skybox
-                if skyBoxSettings.currentSkybox.contains("http") {
+            if !skyBoxSettings.loading {
+                if skyBoxSettings.currentSkybox.contains("http") || skyBoxSettings.currentSkybox.contains("file://") {
                     updateSkyboxURL(with: skyBoxSettings.currentSkybox, content: content)
                 } else {
                     updateSkybox(with: skyBoxSettings.currentSkybox, content: content)
                 }
-            }else{
+            } else {
                 updateVideoSkybox(content: content)
-                
             }
         }
-        .onAppear(perform: {
-            // Present the skybox control window
+        .onAppear {
             openWindow(id: "SkyBoxControls")
-            
-        })
+        }
     }
     
-    private func createSkybox () -> Entity? {
-        // Mesh (large sphere)
+    private func createSkybox() -> Entity? {
         let skyBoxMesh = MeshResource.generateSphere(radius: 1000)
-        // Material (skybox image)
         var skyBoxMaterial = UnlitMaterial()
-        let remoteURL = URL(string: "https://replicate.delivery/pbxt/OtqGeEiTTfk7CU7jj6ogbwRmVs7dxKbaFtax5FmyqNtjKXUSA/6-final.png")!
-        let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        let data = try! Data(contentsOf: remoteURL)
-        try! data.write(to: fileURL)
-        
-        guard let skyBoxTexture = try? TextureResource.load(contentsOf: fileURL) else {return nil}
+        guard let skyBoxTexture = try? TextureResource.load(named: skyBoxSettings.currentSkybox) else { return nil }
         skyBoxMaterial.color = .init(texture: .init(skyBoxTexture))
-        // Entity
         let skyBoxEntity = Entity()
         skyBoxEntity.components.set(ModelComponent(
             mesh: skyBoxMesh,
             materials: [skyBoxMaterial]
-        )
-        )
-        // Associate a name with the skybox
+        ))
         skyBoxEntity.name = "SkyBox"
-        
-        // Map image to inner surface or sphere
-        skyBoxEntity.scale = .init(x:-1, y:1, z:1)
-
-        //The sky box is rotated 90 degrees to the right and I want to fix it
+        skyBoxEntity.scale = .init(x: -1, y: 1, z: 1)
         skyBoxEntity.orientation = simd_quatf(angle: .pi/2, axis: [0, 1, 0])
-        
         return skyBoxEntity
     }
-    // Updates the current skybox
-    private func updateSkybox (with newSkyBoxName:String, content:RealityViewContent){
-        // Get skybox entity from content
-        // Loop trought the entities and retrieve the one that has SkyBox name
-        let skyBoxEntity = content.entities.first{ entity in
+    
+    private func updateSkybox(with newSkyBoxName: String, content: RealityViewContent) {
+        let skyBoxEntity = content.entities.first { entity in
             entity.name == "SkyBox"
         }
         
-        
-        
-        // Update its material (to latest skybox)
         guard let updatedSkyBoxTexture = try? TextureResource.load(named: newSkyBoxName) else {
             return
         }
         
-        var updatedskyBoxMaterial = UnlitMaterial()
-        updatedskyBoxMaterial.color = .init(texture: .init(updatedSkyBoxTexture))
+        var updatedSkyBoxMaterial = UnlitMaterial()
+        updatedSkyBoxMaterial.color = .init(texture: .init(updatedSkyBoxTexture))
         
         skyBoxEntity?.components.set(
             ModelComponent(
                 mesh: MeshResource.generateSphere(radius: 1000),
-                materials: [updatedskyBoxMaterial]
+                materials: [updatedSkyBoxMaterial]
             )
         )
-        
     }
     
-    // Updates the current skybox
-    private func updateVideoSkybox (content:RealityViewContent){
-        let skyBoxEntity = content.entities.first{ entity in
-                    entity.name == "SkyBox"
-                }
-                
-                // Update its material (to latest skybox)
-        guard let videoMaterial = createVideoMaterial() else {
-            return
-        }
-            
-                skyBoxEntity?.components.set(
-                    ModelComponent(
-                    mesh: MeshResource.generateSphere(radius: 1000),
-                            materials: [videoMaterial]
-                        )
-                    )
-    }
-    
-    private func updateSkyboxURL (with newSkyBoxName:String, content:RealityViewContent){
-        // Get skybox entity from content
-        // Loop trought the entities and retrieve the one that has SkyBox name
-        let skyBoxEntity = content.entities.first{ entity in
+    private func updateSkyboxURL(with newSkyBoxName: String, content: RealityViewContent) {
+        let skyBoxEntity = content.entities.first { entity in
             entity.name == "SkyBox"
         }
         
-        let remoteURL = URL(string:newSkyBoxName )!
-        let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        let data = try! Data(contentsOf: remoteURL)
-        try! data.write(to: fileURL)
+        var skyBoxTexture: TextureResource?
         
+        if newSkyBoxName.hasPrefix("http") {
+            let remoteURL = URL(string: newSkyBoxName)!
+            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+            let data = try! Data(contentsOf: remoteURL)
+            try! data.write(to: fileURL)
+            skyBoxTexture = try? TextureResource.load(contentsOf: fileURL)
+        } else if newSkyBoxName.hasPrefix("file://") {
+            let fileURL = URL(string: newSkyBoxName)!
+            skyBoxTexture = try? TextureResource.load(contentsOf: fileURL)
+        } else {
+            let fileURL = URL(fileURLWithPath: newSkyBoxName)
+            skyBoxTexture = try? TextureResource.load(contentsOf: fileURL)
+        }
         
-        // Update its material (to latest skybox)
-        guard let updatedSkyBoxTexture = try? TextureResource.load(contentsOf: fileURL)
-        else {
+        guard let updatedSkyBoxTexture = skyBoxTexture else {
             return
         }
         
-        var updatedskyBoxMaterial = UnlitMaterial()
-        updatedskyBoxMaterial.color = .init(texture: .init(updatedSkyBoxTexture))
+        var updatedSkyBoxMaterial = UnlitMaterial()
+        updatedSkyBoxMaterial.color = .init(texture: .init(updatedSkyBoxTexture))
         
         skyBoxEntity?.components.set(
             ModelComponent(
                 mesh: MeshResource.generateSphere(radius: 1000),
-                materials: [updatedskyBoxMaterial]
+                materials: [updatedSkyBoxMaterial]
             )
         )
-        
     }
-}
-
-private func createVideoMaterial()-> VideoMaterial? {
-    // Load the video
-    guard let videoURL = Bundle.main.url(forResource: "video", withExtension: "mp4") else {
-        return nil
-    }
-    let avPlayer = AVPlayer(url: videoURL)
-    // Create the video material
-    let videoMaterial = VideoMaterial(avPlayer: avPlayer)
-    avPlayer.play()
     
-    return videoMaterial
+    private func updateVideoSkybox(content: RealityViewContent) {
+        let skyBoxEntity = content.entities.first { entity in
+            entity.name == "SkyBox"
+        }
+        
+        guard let videoMaterial = createVideoMaterial() else {
+            return
+        }
+        
+        skyBoxEntity?.components.set(
+            ModelComponent(
+                mesh: MeshResource.generateSphere(radius: 1000),
+                materials: [videoMaterial]
+            )
+        )
+    }
+    
+    private func createVideoMaterial() -> VideoMaterial? {
+        guard let videoURL = Bundle.main.url(forResource: "video", withExtension: "mp4") else {
+            return nil
+        }
+        let avPlayer = AVPlayer(url: videoURL)
+        let videoMaterial = VideoMaterial(avPlayer: avPlayer)
+        avPlayer.play()
+        return videoMaterial
+    }
 }
 
-#Preview {
-    ImmersiveView()
-        .previewLayout(.sizeThatFits)
+// Preview Provider
+struct ImmersiveView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImmersiveView()
+            .environmentObject(SkyboxSettings())
+            .previewLayout(.sizeThatFits)
+    }
 }

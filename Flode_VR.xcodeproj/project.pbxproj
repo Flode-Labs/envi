@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32D4D2C42CAB81E600C5FE03 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D4D2C32CAB81E600C5FE03 /* UserPreferences.swift */; };
+		32D4D2C62CAB821200C5FE03 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D4D2C52CAB821200C5FE03 /* SettingsView.swift */; };
+		32D4D2C82CAB867C00C5FE03 /* SavedEnvironmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D4D2C72CAB867C00C5FE03 /* SavedEnvironmentsView.swift */; };
 		FD3551272B72F020004C820C /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = FD3551262B72F020004C820C /* RealityKitContent */; };
 		FD3551292B72F020004C820C /* Flode_VRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3551282B72F020004C820C /* Flode_VRApp.swift */; };
 		FD35512B2B72F020004C820C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35512A2B72F020004C820C /* ContentView.swift */; };
@@ -32,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32D4D2C32CAB81E600C5FE03 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		32D4D2C52CAB821200C5FE03 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		32D4D2C72CAB867C00C5FE03 /* SavedEnvironmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEnvironmentsView.swift; sourceTree = "<group>"; };
 		FD3551212B72F020004C820C /* Flode_VR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flode_VR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3551252B72F020004C820C /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		FD3551282B72F020004C820C /* Flode_VRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flode_VRApp.swift; sourceTree = "<group>"; };
@@ -45,7 +51,7 @@
 		FD35513E2B72F021004C820C /* Flode_VRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flode_VRTests.swift; sourceTree = "<group>"; };
 		FD3551482B72F78F004C820C /* SkyBoxControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyBoxControlsView.swift; sourceTree = "<group>"; };
 		FD54E3A22B755D8C00B19777 /* Flode_VR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flode_VR.entitlements; sourceTree = "<group>"; };
-		FD90C53F2B769A100005C69E /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video.mp4; path = ../../../Downloads/video.mp4; sourceTree = "<group>"; };
+		FD90C53F2B769A100005C69E /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		FDEAA67D2B75C12200F1A02A /* AssetSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +98,9 @@
 		FD3551232B72F020004C820C /* Flode_VR */ = {
 			isa = PBXGroup;
 			children = (
+				32D4D2C72CAB867C00C5FE03 /* SavedEnvironmentsView.swift */,
+				32D4D2C52CAB821200C5FE03 /* SettingsView.swift */,
+				32D4D2C32CAB81E600C5FE03 /* UserPreferences.swift */,
 				FD54E3A22B755D8C00B19777 /* Flode_VR.entitlements */,
 				FD3551282B72F020004C820C /* Flode_VRApp.swift */,
 				FD35512A2B72F020004C820C /* ContentView.swift */,
@@ -239,8 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D4D2C62CAB821200C5FE03 /* SettingsView.swift in Sources */,
 				FDEAA67E2B75C12200F1A02A /* AssetSelectorView.swift in Sources */,
+				32D4D2C42CAB81E600C5FE03 /* UserPreferences.swift in Sources */,
 				FD35512B2B72F020004C820C /* ContentView.swift in Sources */,
+				32D4D2C82CAB867C00C5FE03 /* SavedEnvironmentsView.swift in Sources */,
 				FD3551292B72F020004C820C /* Flode_VRApp.swift in Sources */,
 				FD3551492B72F78F004C820C /* SkyBoxControlsView.swift in Sources */,
 				FD35512D2B72F020004C820C /* ImmersiveView.swift in Sources */,
